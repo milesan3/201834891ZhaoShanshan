@@ -6,7 +6,7 @@ project description
 * Implement the KNN classifier and test its effect on 20Newsgroups.
 
 DataSet
-=======
+------
 [20Newsgroups](http://qwone.com/~jason/20Newsgroups/)
 
 Requirements
@@ -35,7 +35,7 @@ Use cosine similarity to calculate the vector distance between the test document
 Find the class with the largest distance and calculate the correct rate of the test data set.<br>
 
 Result
-======
+-------
 Only running in K=10,20,30,40,50.After a 5-fold cross-validation, get the ErrorRate.<br>
 K=10: 0.183474<br>
 K=20: 0.1816788<br>

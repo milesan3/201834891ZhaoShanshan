@@ -30,4 +30,6 @@ Load the TFIDF of the training dictionary and process the TFIDF of the test data
 Use cosine similarity to calculate the vector distance between the test document and all training samples.<br>
 Find the class with the largest distance and calculate the correct rate of the test data set.<br>
 
-
+Result
+======
+After a 5-fold cross-validation, select the appropriate K value and get the final correct rate of 85%.

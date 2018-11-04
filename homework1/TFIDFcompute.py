@@ -2,16 +2,20 @@ import os
 import random
 from math import log
 import shutil
+#os.environ["CUDA_VISIBLE_DEVICES"] = '3'
+
 
 # 先算IDF，再算TF，IDF，如果反过来没办法一起计算IDF
 # 计算文档IDF
-def computeIDF(path):  # 路径是过滤掉低频词之后的文件路径：SelcFeauDat
-    TrainIDFPerWord = 'TrainSample/TrainIDFPerWord'
-    TestIDFPerWord = 'TestSample/TestIDFPerWord'
-    if (path.find('Train') != -1):
-        fileList = TrainIDFPerWord
+def computeIDF(i, path):  # 路径是过滤掉低频词之后的文件路径：SelcFeauDat
+    if i == 0 :  # 代表的是最终的测试集
+        fileList = 'TrainSample/TrainIDFPerWord'
+    elif i == 6:
+        fileList = 'TestSample/TestIDFPerWord'
+    elif path.find('Train') != -1:   #判断是测试集还是训练集
+        fileList ='FiveCrossValiSample/TrainSample'+ str(i)+ '/TrainIDFPerWord'
     else:
-        fileList = TestIDFPerWord
+        fileList ='FiveCrossValiSample/TestSample'+ str(i) + '/TestIDFPerWord'
 
     wordMap = {}
     IDFWordMap= {}
@@ -48,13 +52,20 @@ def computeIDF(path):  # 路径是过滤掉低频词之后的文件路径：Selc
 
 
 # 计算TF，TF-IDF
-def computeTFMultiIDF(path):
-    if (path.find('Train') != -1):
+def computeTFMultiIDF(i,path):
+    if i == 0 :
         fileList = 'TrainSample/TrainIDFPerWord'
         tsWriterDir = 'TrainSample/TrainTFIDFPerWord'
-    else:
+    elif i == 6:   # 代表的是最终的测试集
         fileList = 'TestSample/TestIDFPerWord'
         tsWriterDir = 'TestSample/TestTFIDFPerWord'
+    elif (path.find('Train') != -1):   #判断是测试集还是训练集
+        fileList ='FiveCrossValiSample/TrainSample'+ str(i)+ '/TrainIDFPerWord'
+        tsWriterDir ='FiveCrossValiSample/TrainSample'+ str(i)+ '/TrainTFIDFPerWord'
+    else:
+        fileList ='FiveCrossValiSample/TestSample'+ str(i) + '/TestIDFPerWord'
+        tsWriterDir = 'FiveCrossValiSample/TestSample'+ str(i) + '/TestTFIDFPerWord'
+
     tsWriter = open(tsWriterDir, 'w')
     #  注意！！！不能用tsWriterTrain = "xx",tsWriterTest = "xx",用if语句判断tsWriter=tsWriterTrain/tsWriterTest
     #一定要写成打开路径的形式，这样会出现句柄写入错误，执行训练数据后，再执行测试数据，已经写入的文件会为空！！
@@ -76,8 +87,8 @@ def computeTFMultiIDF(path):
             sampIdfFileList = sampIdfFiles + '/' + docFileList
             for line in open(sampIdfFileList).readlines():
                 count += 1        # 每行一个单词，一个文档中的总单词数
-                str = line.strip('\n')
-                TFPerDocMap[str] = TFPerDocMap.get(str, 0) + 1
+                txt = line.strip('\n')
+                TFPerDocMap[txt] = TFPerDocMap.get(txt, 0) + 1
 
             tsWriter.write('%s %s ' % (classFileList, docFileList))  # 写入类别cate，文档doc
             for word, num in TFPerDocMap.items():
@@ -89,8 +100,18 @@ def computeTFMultiIDF(path):
 
 
 if __name__ == "__main__":
-    computeIDF('TrainSample/TrainSelcFeauData')
-    computeTFMultiIDF('TrainSample/TrainSelcFeauData')
-
-    computeIDF('TestSample/TestSelcFeauData')
-    computeTFMultiIDF('TestSample/TestSelcFeauData')
+    # 对训练集进行处理
+    computeIDF(0, 'TrainSample/TrainSelcFeauData')
+    computeTFMultiIDF(0, 'TrainSample/TrainSelcFeauData')
+    # 5折交叉验证
+    for i in range(1,6):
+        # 训练集中的训练
+        m = str(i)
+        computeIDF(i,'FiveCrossValiSample/TrainSample'+ m+ '/TrainSelcFeauData')
+        computeTFMultiIDF(i,'FiveCrossValiSample/TrainSample'+ m+ '/TrainSelcFeauData')
+        # 训练集中的测试
+        computeIDF(i,'FiveCrossValiSample/TestSample'+ m+ '/TestSelcFeauData')
+        computeTFMultiIDF(i, 'FiveCrossValiSample/TestSample'+ m+ '/TestSelcFeauData')
+    # 测试集
+    computeIDF(6, 'TestSample/TestSelcFeauData')
+    computeTFMultiIDF(6, 'TestSample/TestSelcFeauData')

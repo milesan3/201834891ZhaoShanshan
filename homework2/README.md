@@ -1,4 +1,4 @@
-Naive Bayes
+Naïve Bayes
 ===========
 project description
 --------------------

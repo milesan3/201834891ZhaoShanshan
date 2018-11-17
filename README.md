@@ -1,7 +1,7 @@
 Data Mining Homework
 ===========
-*VSM and KNN
+* VSM and KNN
 ----------
-*Naïve Bayes
+* Naïve Bayes
 ---------
 

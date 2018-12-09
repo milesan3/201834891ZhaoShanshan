@@ -1,0 +1,68 @@
+K-Means
+n_clusters: 50, NMI: 0.774491
+n_clusters: 55, NMI: 0.779424
+n_clusters: 60, NMI: 0.777922
+n_clusters: 65, NMI: 0.779727
+n_clusters: 70, NMI: 0.800024
+n_clusters: 75, NMI: 0.789321
+n_clusters: 80, NMI: 0.811471
+n_clusters: 85, NMI: 0.792299
+n_clusters: 90, NMI: 0.798887
+n_clusters: 95, NMI: 0.796610
+n_clusters: 100, NMI: 0.785528
+The average NMI is 0.789609
+
+Affinity propagation
+NMI: 0.785588
+
+Mean-shift
+NMI: -0.726562
+NMI: -0.000002
+
+Spectral clustering
+n_clusters: 50, NMI: 0.669966
+n_clusters: 55, NMI: 0.655152
+n_clusters: 60, NMI: 0.656611
+n_clusters: 65, NMI: 0.669785
+n_clusters: 70, NMI: 0.676445
+n_clusters: 75, NMI: 0.656159
+n_clusters: 80, NMI: 0.675762
+n_clusters: 85, NMI: 0.672644
+n_clusters: 90, NMI: 0.686542
+n_clusters: 95, NMI: 0.668786
+n_clusters: 100, NMI: 0.672712
+The average NMI is 0.672712
+
+Ward hierarchical clustering
+n_clusters: 50, NMI: 0.761958
+n_clusters: 55, NMI: 0.770397
+n_clusters: 60, NMI: 0.777935
+n_clusters: 65, NMI: 0.784833
+n_clusters: 70, NMI: 0.785053
+n_clusters: 75, NMI: 0.778692
+n_clusters: 80, NMI: 0.779725
+n_clusters: 85, NMI: 0.780602
+n_clusters: 90, NMI: 0.779062
+n_clusters: 95, NMI: 0.783602
+n_clusters: 100, NMI: 0.784315
+The average NMI is 0.778743
+
+Agglomerate clustering
+n_clusters: 50, NMI: 0.867625 
+n_clusters: 55, NMI: 0.873083 
+n_clusters: 60, NMI: 0.877990 
+n_clusters: 65, NMI: 0.883189 
+n_clusters: 70, NMI: 0.880555 
+n_clusters: 75, NMI: 0.884345 
+n_clusters: 80, NMI: 0.899808 
+n_clusters: 85, NMI: 0.900356 
+n_clusters: 90, NMI: 0.899082 
+n_clusters: 95, NMI: 0.900336 
+n_clusters: 100, NMI: 0.900210 
+The average NMI is 0.887871 
+
+DBSCAN
+NMI: 0.105063
+
+Gaussian mixtures
+NMI: 0.766023

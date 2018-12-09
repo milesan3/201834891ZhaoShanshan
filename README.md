@@ -4,4 +4,5 @@ Data Mining Homework
 ----------
 * Naïve Bayes
 ---------
-
+* Clustering
+---------

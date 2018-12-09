@@ -1,0 +1,24 @@
+K-Means
+NMI: 0.781860, run_time: 58.339200
+
+Affinity propagation
+NMI: 0.785588, run_time: 23.949200
+
+Mean-shift Result
+NMI: -0.000002, run_time: 450.593603
+
+Spectral clustering
+NMI: 0.667999, run_time: 3.616400
+
+Ward hierarchical clustering
+NMI: 0.780039, run_time: 16.323600
+
+Agglomerate clustering
+NMI: 0.899323, run_time: 16.093400
+
+DBSCAN
+NMI: 0.096068, run_time: 9.486097
+
+Gaussian mixtures
+NMI: 0.767890, run_time: 7.678448
+
